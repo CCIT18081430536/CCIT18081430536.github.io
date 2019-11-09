@@ -62,6 +62,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于RTC与OLED" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/关于RTC与OLED/" class="article-date">
+  <time datetime="2019-11-09T09:46:30.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/09/关于RTC与OLED/">关于RTC与OLED</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于RTC实时时钟如何在OLED上面显示。<br>我最先想到的就像来把我们的固定显示变成动态显示。<br>于是我最开始想的是，把一个变量塞进我们固定的字符串。<br>但是该怎么塞进去呢？<br>这样？<br><img src="/2019/11/09/关于RTC与OLED/1.png" alt><br>显然不行。<br>因为我们需要的是一个指针变量而不是一个普通变量。<br>于是我设置了一个字符数组，也就是我们俗称字符串变量。<br>这样！<br><img src="/2019/11/09/关于RTC与OLED/2.png" alt><br>我开始尝试改变字符串中一号元素的值。<br>像这样！<br><img src="/2019/11/09/关于RTC与OLED/3.png" alt><br>然后这样调用这个显示函数<br><img src="/2019/11/09/关于RTC与OLED/4.png" alt><br>但是发现这并不如我所愿。<br>出现的并不是我想象的那样的数字，而是乱码。<br>我思索了一会儿，发现如果直接把数字代入进去的话，<br>写入的其实是一个和ASCII码的值。<br>于是我尝试的加上一个“0”的ASCII值（0x30）<br><img src="/2019/11/09/关于RTC与OLED/5.png" alt><br>如我所愿，他动起来了。<br>我解决了一个问题，又来了新的问题。<br>如果把字符串的长度从固定长度变成动态长度<br>也就是说，怎么把字符串没有写进去的部分不显示。</p>
+<p>我的想法是，把字符串的长度写一个准确的数值。<br><img src="/2019/11/09/关于RTC与OLED/6.png" alt><br>然后做个循环遍历这个字符串，<br>如果遇到空值调用显示函数，显示函数的第一个参数，写我们的字符串名字。<br>第二个参数写循环i的值（循环i的值是循环第几次后遇到了空），<br>紧接着跳出循环。<br><img src="/2019/11/09/关于RTC与OLED/7.png" alt><br>至于为什么固定字符串长度，是因为如果长度栏不写入一个准确的值的话，就会发生无法把变量写入字符串的情况。<br>长度为i是因为长度决定了我们渲染的次数，那么我们就指渲染我们字符串中有元素的那一部分。<br>至于没有元素的那部分，我们干脆不渲染它。<br>如果不这样做的话，如果我们字符串中只有一个有效元素，那么其他没有元素的空间会渲染出乱码。<br>为什么字符串的长度为17呢？<br>是因为我们屏幕总共能容下16个数字，但是最后一位一定要有一个空值，来结束循环和完成显示。<br>这样，我们的数据处理就做好了，我们预先设置好的时间带入变量，最后赋给字符串，我们的时钟就达成了！<br><img src="/2019/11/09/关于RTC与OLED/8.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://CCIT18081430536.github.io/2019/11/09/关于RTC与OLED/" data-id="ck2rfbrvf0000b4xt29xloimb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hexo个人博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/07/hexo个人博客搭建/" class="article-date">
@@ -123,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://CCIT18081430536.github.io/2019/11/07/hexo个人博客搭建/" data-id="ck2oaroh3000364xtgi9dq6mt" class="article-share-link">Share</a>
+      <a data-url="http://CCIT18081430536.github.io/2019/11/07/hexo个人博客搭建/" data-id="ck2rfbrvl0001b4xtete3gf6i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -228,7 +266,7 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://CCIT18081430536.github.io/2019/11/07/beacon/" data-id="ck2oaroh8000464xt48lttq93" class="article-share-link">Share</a>
+      <a data-url="http://CCIT18081430536.github.io/2019/11/07/beacon/" data-id="ck2rfbrvx0005b4xtc76owy50" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,7 +296,7 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://CCIT18081430536.github.io/2019/10/24/test/" data-id="ck2oaroh2000264xtmk6p4h2e" class="article-share-link">Share</a>
+      <a data-url="http://CCIT18081430536.github.io/2019/10/24/test/" data-id="ck2rfbrvw0004b4xtdjnyifwg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,7 +333,7 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://CCIT18081430536.github.io/2019/09/18/helloccit/" data-id="ck2oaroh0000164xt3yw3dh31" class="article-share-link">Share</a>
+      <a data-url="http://CCIT18081430536.github.io/2019/09/18/helloccit/" data-id="ck2rfbrvo0002b4xtjkjzuzdt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -344,7 +382,7 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://CCIT18081430536.github.io/2019/09/18/hello-world/" data-id="ck2oarogs000064xtro8vj4a6" class="article-share-link">Share</a>
+      <a data-url="http://CCIT18081430536.github.io/2019/09/18/hello-world/" data-id="ck2rfbrvp0003b4xtbwz0d7fu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,6 +423,10 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
       <ul>
         
           <li>
+            <a href="/2019/11/09/关于RTC与OLED/">关于RTC与OLED</a>
+          </li>
+        
+          <li>
             <a href="/2019/11/07/hexo个人博客搭建/">hexo个人博客搭建</a>
           </li>
         
@@ -398,10 +440,6 @@ avatar</code></pre><p>四.点击菜单栏中的Project Manager进入工程配置
         
           <li>
             <a href="/2019/09/18/helloccit/">helloccit</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/18/hello-world/">Hello World</a>
           </li>
         
       </ul>
